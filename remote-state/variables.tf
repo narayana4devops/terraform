@@ -1,5 +1,3 @@
-# ec2 variables
-
 variable "image_id" {
     type = string
     default = "ami-090252cbe067a9e58"
@@ -7,20 +5,19 @@ variable "image_id" {
 
 }
 
-variable "instance_names" {
-    type = list
-    default = ["db","backend","frontend"]
+variable "instance_type" {
+    type = string
+    default = "t3.micro"
 }
 
-variable "common_tags" {
+variable "tags" {
     default = {
-        Project = "Expense"
+        project = "Expense"
         Environment = "Dev"
-        Terraform = "true"
+        Module = "DB"
+        Name = "DB"        
     }
 }
-
-# sg variables
 
 variable "sg_name" {
     default = "allow_ssh"
@@ -42,13 +39,4 @@ variable "protocal" {
 variable "allow_cidr" {
     type = list(string)
     default = ["0.0.0.0/0"]
-}
-
-# r53 variables
-variable "zone_id" {
-    default = "Z0235377LLZP9NE0RDEE"
-}
-
-variable "domain_name" {
-    default = "daws78s1.online"
 }
